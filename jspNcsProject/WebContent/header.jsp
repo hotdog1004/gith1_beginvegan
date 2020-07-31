@@ -101,7 +101,7 @@
 			</td>
 			<%} %>
 		</tr>
-		<tr>
+		<tr>	
 			<td class="tab" onclick="window.location='/jnp/information/informationList.jsp'" <%if(mode.equals("information")) { %>style="color:#edd713;"<%} %>>채식정보</td>
 			<td class="tab" onclick="window.location='/jnp/recipe/recipeList.jsp?mode=num'" <%if(mode.equals("recipe")) { %>style="color:#edd713;"<%} %>>레시피</td>
 			<td class="tab" onclick="window.location='/jnp/product/productList.jsp'" <%if(mode.equals("product")) { %>style="color:#edd713;"<%} %>>제품</td>
