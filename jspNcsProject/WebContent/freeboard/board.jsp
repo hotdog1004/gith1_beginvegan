@@ -22,6 +22,11 @@
 	.page{
 		display: inline-block;
 		color : black;
+		cursor:pointer;
+		font-size:20px;
+	}
+	.page:hover{
+		color:#8bc34a;
 	}
 	
 	.list{
@@ -120,12 +125,12 @@
 	//정렬기준
 	String mode= request.getParameter("mode");// reg, recommend, read_count
 	
-	if(mode==null || mode.equals("")){
+	if(mode==null || mode.equals("") || mode.equals("null")){
 		mode = "reg";
 	}
 		
 	String pageNum = request.getParameter("pageNum");
-	if(pageNum == null){
+	if(pageNum == null  || pageNum.equals("") || pageNum.equals("null")){
 		pageNum  = "1";
 	}
 	int pageSize= 10;
@@ -152,26 +157,28 @@
 	String sel = request.getParameter("sel");//검색조건
 	String search = request.getParameter("search"); //검색결과
 	
-	
-	if(category != null && category.equals("null")) {category=null;}
-	if(sel != null &&sel.equals("null")) {sel=null;}
-	if(search != null &&search.equals("null")) {search=null;}
+	//null처리
+	if(category != null && (category.equals("null")|| category.equals(""))) {category=null;}
+	if(sel != null && (sel.equals("null")|| sel.equals(""))) {sel=null;}
+	if(search != null && (search.equals("null")|| search.equals(""))) {search=null;}
 	
 
-	
+	if(category != null) { System.out.println("category:" +category);}
+	if(sel != null) { System.out.println("sel:" +sel);}
+	if(search != null) { System.out.println("search:" +search);}
 	
 	
 	List articleList = null;
 	
 
-	if(category!= null && !category.equals("") && sel != null && !sel.equals("")){
+	if(category!= null && sel != null){
 		//검색 요청 찾기
 		String whereQuery = "where 1=1 ";
 		String name = "";
 		//작성자명은 활동명이므로 검색시 쿼리문 검색을 위해 id를 받아와야함
 			
 		if(!category.equals("total") && !sel.equals("total")){		
-			if(search!=null && !search.equals("")){
+			if(search!= null){
 				if(sel.equals("writer")){
 					//활동명->아이디
 					name = dao.selectIdByName(search);
@@ -185,7 +192,7 @@
 			whereQuery += "and category='"+category+"'";
 		
 		}else if(!sel.equals("total")){
-			if(search!=null && !search.equals("")){
+			if(search!=null){
 				if(sel.equals("writer")){
 					//활동명->아이디
 					name = dao.selectIdByName(search);
@@ -195,8 +202,9 @@
 				}		
 			}
 		}		
-		
+		System.out.println("whereQuery:"+whereQuery);
 		count = dao.getArticlesCount(whereQuery);
+		System.out.println("count: "+ count);
 		if(count > 0 ){
 			//검색 요청한 글 리스트 가져오기
 			newCount = dao.getArticlesCount(new Timestamp(today_todate.getTime()),whereQuery);
@@ -335,13 +343,13 @@
 			if(endPage > pageCount) endPage = pageCount; 
 			
 			if(startPage > pageBlock){%>
-				<div class="page" onclick="window.location='board.jsp?pageNum=<%=startPage-pageBlock%>'">&lt;</div>
+				<div class="page" onclick="window.location='board.jsp?pageNum=<%=startPage-pageBlock%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>'">&lt;</div>
 			<%}
 			for(int i = startPage ; i<= endPage; i++){%>
-				<div class="page" onclick="window.location='board.jsp?pageNum=<%=i%>'">&nbsp;<%=i %></div>	
+				<div class="page" onclick="window.location='board.jsp?pageNum=<%=i%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>'">&nbsp;<%=i %></div>	
 			<%}			
 			if(endPage > pageCount){%>
-				<div class="page" onclick="window.location='board.jsp?pageNum=<%=startPage+pageBlock%>'">&gt;</div>		
+				<div class="page" onclick="window.location='board.jsp?pageNum=<%=startPage+pageBlock%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>'">&gt;</div>		
 			<%}	
 		}
 	%>	
@@ -365,7 +373,7 @@
 						<option value="content" <%if(sel != null && sel.equals("content")){%>selected<%}%>>내용</option>
 						<option value="writer" <%if(sel != null && sel.equals("writer")){%>selected<%}%>>작성자</option>
 					</select>
-					<input type="text" name="search"/>
+					<input type="text" name="search" <%if(search != null ){%>value="<%=search%>"<%}%> />
 				</td>	
 				<td><input type="submit" value="검색"/></td>				
 			</tr>

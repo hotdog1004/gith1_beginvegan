@@ -116,6 +116,11 @@
 	.page{
 		display: inline-block;
 		color : black;
+		cursor:pointer;
+		font-size:20px;
+	}
+	.page:hover{
+		color:#8bc34a;
 	}
 	
 	.tag-wrapper{
@@ -434,7 +439,20 @@
 			<div class="info">
 				<div class='row title' ><%=recipe.getRecipeName() %></div>
 				<div class='row' style="color:#999;">posted by <%=idToName %></div>
-				<div class='row'>평점 : <%=recipe.getRating() %>(<%=rateCount%>)</div>
+				<div class='row'>평점 : 
+				<%
+						//평점 별 그림 넣기
+						for(int j = 0; j < (int)recipe.getRating() ; j++) {
+							%> <img src = "/jnp/recipe/imgs/star.png" width="12px" style="margin:0px auto; vertical-align:center"/> 
+						<%}%>
+						<%for(int j = 0; j < 5-(int)recipe.getRating() ; j++) {
+							%> <img src = "/jnp/recipe/imgs/emptyStar.png" width="12px"style="margin:0px auto; vertical-align:center"/> 
+						<%}%>
+				
+				
+				
+				
+				<%=recipe.getRating() %> (<%=rateCount%>)</div>
 				<div class='row'>채식유형 : <%=recipe.getVegiType()%> | 난이도 : <%=recipe.getDifficulty()%> 
 				| 조리시간 : <%=recipe.getCookingTime()%>분 | 분량 : <%=recipe.getQuantity()%>인분 | 칼로리(1인분/Kcal) : <%=recipe.getCal()%>Kcal		
 				</div>

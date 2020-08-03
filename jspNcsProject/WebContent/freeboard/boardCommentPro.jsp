@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="jspNcsProject.dao.BoardCommentDAO"%>
 <%@page import="jspNcsProject.dto.BoardCommentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,15 +18,23 @@
 			history.go(-1);
 		</script>
 	<% }else{
-
-	
 	
 
 	int freeboard_num = Integer.parseInt(request.getParameter("freeboard_num"));
 	int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+	
+	//
+	String sel = request.getParameter("sel");
+	String search= request.getParameter("search");
+	String category = request.getParameter("category");
+	String mode= request.getParameter("mode");
+	//
 	String strRef = request.getParameter("ref");
 	String StrRe_level = request.getParameter("re_level");
 	String receiver = request.getParameter("receiver");
+	
+	
+	
 	
 	int ref =0;
 	int re_level =0;
@@ -55,7 +64,7 @@
 		
 	<%}else{%>
 		<script>alert("댓글이 작성되었습니다.")</script>	
-	<%	String url ="boardContent.jsp?num="+freeboard_num+"&pageNum="+pageNum;
+	<%	String url ="boardContent.jsp?num="+freeboard_num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&sel="+sel+"&search="+URLEncoder.encode(search,"utf-8");
 		response.sendRedirect(url);
 	}
 } %>

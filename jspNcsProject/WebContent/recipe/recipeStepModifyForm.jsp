@@ -27,6 +27,28 @@
 	
 	RecipeContentDAO dao = RecipeContentDAO.getInstance();
 	
+
+	try {
+	//재료 다듬어서 저장하기
+		String ingre = ",";
+		//모든 콤마를 슬래시로 바꾸기
+		ingredients = ingredients.replaceAll(",", "/");
+		//줄바꿈을 콤마로 바꾸기
+		ingredients = ingredients.replaceAll("\n", ",");
+		//콤마 기준으로 나누기
+		String[] ingreSplit = ingredients.split(",");
+		
+		for(int i = 0; i<ingreSplit.length; i++) {
+			ingreSplit[i] = ingreSplit[i].trim(); //양쪽 공백 없애고 
+			String[] tmp = ingreSplit[i].split(":");
+			tmp[0] = tmp[0].trim();
+			tmp[1] = tmp[1].trim();
+			ingre += tmp[0] + ":" + tmp[1] + ","; //문자열에 더하기
+		}
+		
+		ingredients = ingre;
+	
+	
 	//기존 세부내용 리스트
 	List contents = dao.selectRecipeContent(num);
 %>
@@ -82,4 +104,10 @@
 <br/>
 		<jsp:include page="../footer.jsp" flush="false"/>
 </body>
+	<%	} catch(Exception e) { %> 
+	<script>
+	alert("재료 입력 형식을 확인해주세요. \n\ ------------------ \n\재료명 : 분량\n\재료명 : 분량\n\ ... \n\------------------");
+	history.go(-1);
+</script>
+<%} %>
 </html>

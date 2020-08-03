@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>글 수정폼</title>
 <script>
+
 	#f-content{
 		margin-top: 70px;
 		width: 700px;
@@ -19,6 +20,7 @@
 		height: 30px;
 	
 	}
+	
 	#f-content td{
 		border-top: 1px solid #999;
 		border-buttom: 1px solid #999;
@@ -32,18 +34,27 @@
 		border : 0px;
 		padding: 10px;
 	}
+	
 </script>
 </head>
 <%
+	request.setCharacterEncoding("utf-8"); 
 
 	if(session.getAttribute("memId") == null ){%>
 	<script>
 		alert("잘못된 접근입니다.");
-	history.go(-1);
+		history.go(-1);
 	</script>
 	<% }else{
-
+		
 	int num = Integer.parseInt(request.getParameter("num"));
+	
+	String mode= request.getParameter("mode");
+	String category = request.getParameter("category");
+	String sel = request.getParameter("sel");
+	String search = request.getParameter("search");
+	String pageNum = request.getParameter("pageNum");
+	
 	
 	FreeBoardDAO dao = FreeBoardDAO.getInstance();
 	FreeBoardDTO article = dao.selectArticle(num,"modify");
@@ -61,6 +72,11 @@
 	<form action="boardModifyPro.jsp" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="writer" value="<%=article.getWriter()%>"/>
 		<input type="hidden" name="num" value="<%=num%>"/>
+		<input type="hidden" name="category" value="<%=category%>"/>
+		<input type="hidden" name="sel" value="<%=sel%>"/>
+		<input type="hidden" name="search" value="<%=search%>"/>
+		<input type="hidden" name="pageNum" value="<%=pageNum%>"/>
+		<input type="hidden" name="mode" value="<%=mode%>"/>
 		<table id="f-content">
 			<tr>
 				<td>제목</td>			

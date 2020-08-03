@@ -1,3 +1,4 @@
+<%@page import="jspNcsProject.dao.RatingDAO"%>
 <%@page import="jspNcsProject.dto.RecipeDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="jspNcsProject.dao.ScrapDAO"%>
@@ -121,6 +122,7 @@ if(memId == null) {
 	%> <script> alert("회원만 볼 수 있는 페이지입니다."); window.location="loginForm.jsp"; </script> <%
 } else {
 	ScrapDAO dao = ScrapDAO.getInstance();
+	RatingDAO rDAO = RatingDAO.getInstance();
 	List list = dao.selectScrapRecipe(memId);
 
 	int pageSize =20;
@@ -152,6 +154,7 @@ if(memId == null) {
 		<%}else{
 			for(int i = 0 ; i < list.size() ; i++){	
 					RecipeDTO recipe  = (RecipeDTO)list.get(i);
+					int rateCount = rDAO.getCountRating(recipe.getNum());
 		%>
 		<div class="recipe" onclick="window.location='../recipe/recipeContent.jsp?num=<%=recipe.getNum()%>'" style="margin-bottom:0px;">
 			<div class="thumbnail">
@@ -160,9 +163,20 @@ if(memId == null) {
 			<div class="info" >
 				<div class='row title' ><%=recipe.getRecipeName() %><div align="right" style="float:right;"><button class="greenButton" onclick="UnScrap(<%=recipe.getNum()%>)" style="margin:5px 0px 5px 5px;padding:3px 10px">찜 해제</button></div></div>
 				<div class='row'>posted by <%=recipe.getWriter() %></div>
-				<div class='row'>평점: <%=recipe.getRating() %>(리뷰수)</div>
+				<div class='row'>평점: 
+				<%
+						//평점 별 그림 넣기
+						for(int j = 0; j < (int)recipe.getRating() ; j++) {
+							%> <img src = "/jnp/recipe/imgs/star.png" width="12px" style="margin:0px auto; vertical-align:center"/> 
+						<%}%>
+						<%for(int j = 0; j < 5-(int)recipe.getRating() ; j++) {
+							%> <img src = "/jnp/recipe/imgs/emptyStar.png" width="12px"style="margin:0px auto; vertical-align:center"/> 
+						<%}%>
+				
+				
+				<%=recipe.getRating() %> (<%=rateCount%>)</div>
 				<div class='row'>채식유형 : <%=recipe.getVegiType()%> | 난이도 : <%=recipe.getDifficulty()%> 
-				| 조리시간: <%=recipe.getCookingTime()%>분 | 분량: <%=recipe.getQuantity()%>인분 | 칼로리(1인분/Kcal): <%=recipe.getCal()%>Kcal		
+				| 조리시간: <%=recipe.getCookingTime()%>분 | 분량: <%=recipe.getQuantity()%>인분 | 칼로리 : <%=recipe.getCal()%>Kcal		
 				</div>
 				<%--<div class='row'>재료: <%= recipe.getIngredients().substring(1,recipe.getIngredients().length()-1)%></div>--%>				
 			</div>		

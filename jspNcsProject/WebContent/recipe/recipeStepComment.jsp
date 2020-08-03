@@ -158,8 +158,8 @@
 								int maxReLevel = dao.selectMaxRelevel(dto.getRef());				
 								int cRef = dao.countRef(dto);								
 					%>				
-								<input type="button" value="&#x1F4AC;답글쓰기" class="greenButton" style="padding:5px;
-									"onclick="openReplyForm(<%= nowContentNum %>, <%= recipeNum %>, <%= maxReLevel %>, <%= reStep %>, <%= dto.getRef() %>, <%=cRef %>);" />
+								<input type="button" value="&#x1F4AC;답글" class="grayButton" style="background-color:#8bc34a; color:white;"
+									onclick="openReplyForm(<%= nowContentNum %>, <%= recipeNum %>, <%= maxReLevel %>, <%= reStep %>, <%= dto.getRef() %>, <%=cRef %>);" />
 								<input type="button" value="&#128680;신고"class="grayButton" onclick="report('RCC','<%=dto.getNum()%>','<%=dto.getName()%>')"/>
 					<%		}else{	%>			
 								<input type="button" value="&#128680;신고"class="grayButton" onclick="report('RCC','<%=dto.getNum()%>','<%=dto.getName()%>')"/>

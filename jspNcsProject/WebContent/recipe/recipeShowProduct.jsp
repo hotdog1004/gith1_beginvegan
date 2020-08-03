@@ -61,6 +61,12 @@ if(maxSize > 0) {
 			</div>
 		</td>
 		<%} %>
+		<%for(int i = 0; i< 4-maxSize; i++) { %>
+		<td>
+			<div style="width:200px; height:200px; text-align:center;">
+			</div>
+		</td>
+		<%} %>
 	</tr>
 </table>
 <hr size="2px" width="1100px" color="#ccc">

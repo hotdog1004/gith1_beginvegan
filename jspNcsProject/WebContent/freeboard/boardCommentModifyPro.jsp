@@ -20,7 +20,6 @@
 	
 	int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 	String content = request.getParameter("content");
-	System.out.println(content);
 	
 	BoardCommentDAO dao = BoardCommentDAO.getInstance();
 	dao.updateBoardComment(comment_num, content);
