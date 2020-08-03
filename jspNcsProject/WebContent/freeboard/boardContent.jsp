@@ -105,9 +105,9 @@ if(request.getParameter("num") == null){%>
 				<td>LIKE</td>
 				<td><%=article.getRecommend()%>
 				<%if(session.getAttribute("memId")!=null && ch == false){%>
-				<img src="/jnp/freeboard/img/emptyheart.png" style="width:20px;cursor:pointer;" onclick="window.location='recommendArticle.jsp?freeboard_num=<%=article.getNum()%>&mem_id=<%=session.getAttribute("memId")%>&pageNum=<%=pageNum%>'"/>
+				<img src="/jnp/freeboard/img/emptyheart.png" style="width:20px;cursor:pointer;" onclick="window.location='recommendArticle.jsp?freeboard_num=<%=article.getNum()%>&mem_id=<%=session.getAttribute("memId")%>&pageNum=<%=pageNum%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>'"/>
 				<%}else if(session.getAttribute("memId")!=null && ch == true){%>
-				<img src="/jnp/freeboard/img/heart.png" style="width:20px;cursor:pointer;" onclick="window.location='recommendArticle.jsp?freeboard_num=<%=article.getNum()%>&mem_id=<%=session.getAttribute("memId")%>&pageNum=<%=pageNum%>'"/>
+				<img src="/jnp/freeboard/img/heart.png" style="width:20px;cursor:pointer;" onclick="window.location='recommendArticle.jsp?freeboard_num=<%=article.getNum()%>&mem_id=<%=session.getAttribute("memId")%>&pageNum=<%=pageNum%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>'"/>
 				<%} %>
 			</tr>
 			<tr>
