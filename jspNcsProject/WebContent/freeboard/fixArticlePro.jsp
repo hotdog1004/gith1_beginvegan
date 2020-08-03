@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="jspNcsProject.dao.FreeBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,7 +20,7 @@
 	FreeBoardDAO dao = FreeBoardDAO.getInstance();	
 	dao.fixArticle(num,ch);
 	
-	String url = "boardContent.jsp?num="+num+"&mode="+mode+"&category="+category+"&sel="+sel+"&search="+search+"&pageNum="+pageNum;
+	String url = "boardContent.jsp?num="+num+"&mode="+mode+"&category=" +category+"&sel="+sel+"&search="+URLEncoder.encode(search,"utf-8") +"&pageNum="+pageNum;
 	response.sendRedirect(url);
 
 %>

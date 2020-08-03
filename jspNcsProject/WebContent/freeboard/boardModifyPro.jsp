@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="jspNcsProject.dao.FreeBoardDAO"%>
 <%@page import="jspNcsProject.dto.FreeBoardDTO"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -11,6 +12,7 @@
 <title>Insert title here</title>
 </head>
 <%
+	request.setCharacterEncoding("utf-8"); 
 	if(session.getAttribute("memId") == null ){%>
 	<script>
 		alert("잘못된 접근입니다.");
@@ -18,7 +20,7 @@
 	</script>
 	<% }else{
 	
-	request.setCharacterEncoding("utf-8"); 
+	
 	
 	String path = request.getRealPath("freeboard/save");
 	int max = 1024*1024*10;
@@ -33,16 +35,22 @@
 	String img= mr.getFilesystemName("img");
 	String title = mr.getParameter("title");
 	String writer = mr.getParameter("writer");
+	String mode = mr.getParameter("mode");
 	String category = mr.getParameter("category");
+	String sel = mr.getParameter("sel");
+	String search = mr.getParameter("search");
+	
+	String pageNum = mr.getParameter("pageNum");	
 	String content = mr.getParameter("content");
 	
 	FreeBoardDTO article = new FreeBoardDTO(num,title,writer,category,content,null,0,0,null,img);
-	
 	//db저장
 	FreeBoardDAO dao = FreeBoardDAO.getInstance();
+
 	int result = dao.updateArticle(article);
 	if(result ==1){
-		String url = "boardContent.jsp?num="+num;
+		
+		String url = "boardContent.jsp?num="+num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&search="+URLEncoder.encode(search,"utf-8")+ "&sel=" + sel;
 		response.sendRedirect(url);		
 	}else{%>
 		<script>

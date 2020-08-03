@@ -16,6 +16,7 @@
 	}
 </script>
 <%
+	request.setCharacterEncoding("utf-8");
 	if(session.getAttribute("memId") == null ||request.getParameter("freeboard_num") == null || request.getParameter("ref") == null || request.getParameter("re_level") ==null){%>
 	<script>
 		alert("잘못된 접근입니다.");

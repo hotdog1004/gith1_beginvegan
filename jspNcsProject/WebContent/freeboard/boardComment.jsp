@@ -44,7 +44,7 @@
 </script>
 </head>
 <%	
-	request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");	
 
 	if(request.getParameter("num") == null){%>
 	<script>
@@ -55,7 +55,11 @@
 
 	int freeboard_num = Integer.parseInt(request.getParameter("num"));//글번호
 	int pageNum = Integer.parseInt(request.getParameter("pageNum"));//글번호
-	String form = request.getParameter("form");//modify, insert
+	
+	String mode= request.getParameter("mode");
+	String search= request.getParameter("search");
+	String category=  request.getParameter("category");
+	String sel = request.getParameter("sel");
 	
 
 	//댓글리스트 가져오기
@@ -147,7 +151,12 @@
 	<form action="boardCommentPro.jsp" method="post" name="commentform" onsubmit="return check()">
 		<input type="hidden" name="freeboard_num" value="<%=freeboard_num%>"/>
 		<input type="hidden" name="pageNum" value="<%=pageNum%>"/>
-		<input type="hidden" name="writer" value="<%=session.getAttribute("memId")%>"/>		
+		<input type="hidden" name="writer" value="<%=session.getAttribute("memId")%>"/>	
+		<input type="hidden" name="category" value="<%=category%>"/>	
+		<input type="hidden" name="sel" value="<%=sel%>"/>	
+		<input type="hidden" name="search" value="<%=search%>"/>	
+		<input type="hidden" name="mode" value="<%=mode%>"/>	
+			
 		<table class="comment_input">
 			<tr>
 			</tr>
