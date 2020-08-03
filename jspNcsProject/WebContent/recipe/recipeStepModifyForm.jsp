@@ -47,16 +47,6 @@
 		}
 		
 		ingredients = ingre;
-	} catch(Exception e) { %> 
-		<script>
-			alert("재료 입력 형식을 확인해주세요. \n\ ------------------ \n\재료명 : 분량\n\재료명 : 분량\n\ ... \n\------------------");
-			history.go(-1);
-		</script>
-	<%}
-	
-	
-	
-	
 	
 	
 	//기존 세부내용 리스트
@@ -114,4 +104,10 @@
 <br/>
 		<jsp:include page="../footer.jsp" flush="false"/>
 </body>
+	<%	} catch(Exception e) { %> 
+	<script>
+	alert("재료 입력 형식을 확인해주세요. \n\ ------------------ \n\재료명 : 분량\n\재료명 : 분량\n\ ... \n\------------------");
+	history.go(-1);
+</script>
+<%} %>
 </html>
