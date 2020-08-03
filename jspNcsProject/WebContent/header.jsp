@@ -42,6 +42,7 @@
 	}
 </script> 
 <%
+ 	request.setCharacterEncoding("utf-8");
 	String mode = request.getParameter("mode");
 	if(mode == null) {mode="";}
 	if(session.getAttribute("memId")==null){ //비로그인상태(세션없을때)

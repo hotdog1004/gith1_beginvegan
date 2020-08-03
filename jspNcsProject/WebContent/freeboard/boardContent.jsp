@@ -63,6 +63,7 @@ if(request.getParameter("num") == null){%>
 	String category = request.getParameter("category");
 	String sel = request.getParameter("sel");
 	String search = request.getParameter("search");
+	System.out.println("search:" + search);
 	
 	String route = request.getParameter("route");
 	if(route== null || route.equals("")){

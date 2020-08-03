@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="jspNcsProject.dao.BoardCommentDAO"%>
 <%@page import="jspNcsProject.dto.BoardCommentDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -63,7 +64,7 @@
 		
 	<%}else{%>
 		<script>alert("댓글이 작성되었습니다.")</script>	
-	<%	String url ="boardContent.jsp?num="+freeboard_num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&sel="+sel+"&search="+search;
+	<%	String url ="boardContent.jsp?num="+freeboard_num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&sel="+sel+"&search="+URLEncoder.encode(search,"utf-8");
 		response.sendRedirect(url);
 	}
 } %>

@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="jspNcsProject.dao.FreeBoardDAO"%>
 <%@page import="jspNcsProject.dto.FreeBoardDTO"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -38,6 +39,7 @@
 	String category = mr.getParameter("category");
 	String sel = mr.getParameter("sel");
 	String search = mr.getParameter("search");
+	
 	String pageNum = mr.getParameter("pageNum");	
 	String content = mr.getParameter("content");
 	
@@ -48,7 +50,7 @@
 	int result = dao.updateArticle(article);
 	if(result ==1){
 		
-		String url = "boardContent.jsp?num="+num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&search="+search+ "&sel=" + sel;
+		String url = "boardContent.jsp?num="+num+"&pageNum="+pageNum+"&mode="+mode+"&category="+category+"&search="+URLEncoder.encode(search,"utf-8")+ "&sel=" + sel;
 		response.sendRedirect(url);		
 	}else{%>
 		<script>
