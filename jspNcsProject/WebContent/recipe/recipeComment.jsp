@@ -92,11 +92,6 @@
 <%}%>
 	<hr size="1px" width="700px" color="#ccc" style="margin-top:3px">
 <hr>
-<%--
-<div align=right >
-	<button onclick="commentList()">댓글 더보기</button>
-</div>
- --%>
 <%}%>
 		
 		<%--댓글 작성 폼--%>
