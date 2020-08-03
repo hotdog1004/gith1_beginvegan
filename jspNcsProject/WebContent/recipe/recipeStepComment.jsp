@@ -1,4 +1,4 @@
- <%@page import="jspNcsProject.dto.RecipeContentCommentDTO"%>
+<%@page import="jspNcsProject.dto.RecipeContentCommentDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="jspNcsProject.dao.RecipeContentCommentDAO"%>
 <%@page import="java.util.List"%>
@@ -85,7 +85,7 @@
 	RecipeContentDTO recipeContentdto = new RecipeContentDTO();
 	RecipeContentDAO recipeContentdao = RecipeContentDAO.getInstance();
 	
-	// recipeContentList : 레시피 조리단계  담아준 리스트 -> for문 돌려서 뽑기
+	// recipeContentList : 레시피 조리단계  담아준 리스트 -> for문으로 뽑기
 	List recipeContentList = recipeContentdao.selectRecipeContent(num);
 	
 	for(int i = 0; i < recipeContentList.size(); i++){
@@ -100,7 +100,8 @@
 	<%
 	for(int i = 0; i < recipeContentList.size(); i++){
 		recipeContentdto = (RecipeContentDTO)recipeContentList.get(i); 
-
+		System.out.println(recipeContentdto.getContent());
+		
 		int reLevel = 0;
 		int reStep = 0;
 		// 조리과정 단계담아줄 변수

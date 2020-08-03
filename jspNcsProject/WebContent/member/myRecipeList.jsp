@@ -86,11 +86,11 @@
 			</td>		
 		</tr>
 		<tr>
-			<td>채식유형 : <%= dto.getVegiType() %></td>
-			<td>난이도 : <%= dto.getDifficulty() %></td>
-			<td>조리시간 : <%= dto.getCookingTime() %>분</td>	
-			<td>분량 : <%= dto.getQuantity() %>인분</td>	
-			<td>칼로리 : <%= dto.getCal() %>Cal</td>				
+			<td><%= dto.getVegiType() %></td>
+			<td><%= dto.getDifficulty() %></td>
+			<td><%= dto.getCookingTime() %>분소요</td>	
+			<td><%= dto.getQuantity() %>인분</td>	
+			<td><%= dto.getCal() %>Cal</td>				
 		</tr>
 		<tr>
 

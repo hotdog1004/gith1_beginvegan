@@ -34,14 +34,14 @@
 		<input type="hidden" name="ref" value="<%= ref %>"/>
 		<table>
 			<tr>
-				<td colspan="2">
-					<textarea rows="5" cols="30" name="commentContent" required></textarea>
+				<td colspan="2">				
+					<textarea rows="5" cols="30" name="commentContent" style="resize:none; border:2px solid #ccc; border-radius:5px;" required></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="submit" value="등록"/>
-					<input type="button" value="창닫기" onclick="window.close();"/>
+					<input type="submit" class="greenButton" style="height:100%" value="등록"/>
+					<input type="button" class="greenButton" style="height:100%" value="창닫기" onclick="window.close();"/>
 				</td>
 			</tr>
 		</table>

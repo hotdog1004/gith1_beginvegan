@@ -188,7 +188,6 @@ public class RecipeContentCommentDAO {
 	// 레시피 답글 체크하는 메서드(relevel 최대값 리턴해줌) 
 	public int selectMaxRelevel(int ref) {
 		int maxReLevel = 0;
-		// 최대값이 1 미만이면 false, 1이상이면 true
 		try {
 			conn = getConnection();
 			String sql = "select max(re_level) from RECIPE_CONTENT_COMMENT where ref=?";
