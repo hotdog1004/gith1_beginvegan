@@ -126,7 +126,7 @@ public class FreeBoardDAO {
 		ArrayList articles = null;
 		try {
 			conn = getConnection();
-			String sql = "SELECT a.*from(SELECT rownum r, b.* "
+			String sql = "SELECT a.* from(SELECT rownum r, b.* "
 					+ "from(SELECT * FROM freeboard WHERE category NOT IN ('notice') ORDER BY "+mode+" DESC)b ORDER BY "+mode+" DESC)a "
 					+ "WHERE r>=? AND r<=?";
 			pstmt = conn.prepareStatement(sql);
@@ -166,7 +166,7 @@ public class FreeBoardDAO {
 		try {
 			
 			conn = getConnection();
-			String sql = "SELECT a.*from(SELECT rownum r, b.* "
+			String sql = "SELECT a.* from(SELECT rownum r, b.* "
 					+ "from(SELECT * FROM freeboard "+whereQuery+" and category NOT IN ('notice') ORDER BY "+mode+" DESC)b ORDER BY "+mode+" DESC)a "
 					+ "WHERE r>=? AND r<=?";
 			pstmt = conn.prepareStatement(sql);

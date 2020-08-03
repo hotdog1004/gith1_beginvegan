@@ -41,20 +41,24 @@
 </style>
 </head>
 <%
+request.setCharacterEncoding("utf-8");
+
 if(request.getParameter("num") == null){%>
 	<script>
 		alert("잘못된 접근입니다.");
 		history.go(-1);
 	</script><%
 }else{
-	int num = Integer.parseInt(request.getParameter("num"));
 
 	
+	int num = Integer.parseInt(request.getParameter("num"));
+
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null || pageNum.equals("") || pageNum.equals("null")){
 		pageNum = "1";
 	}
 	
+	//null이면 "null"
 	String mode= request.getParameter("mode");
 	String category = request.getParameter("category");
 	String sel = request.getParameter("sel");
@@ -134,7 +138,7 @@ if(request.getParameter("num") == null){%>
 			<tr>
 				<td colspan='2'>
 				<%if(article.getWriter().equals((String)session.getAttribute("memId"))){%>
-					<input type="button" value="수정" onclick="window.location='boardModifyForm.jsp?num=<%=article.getNum()%>'"/>
+					<input type="button" value="수정" onclick="window.location='boardModifyForm.jsp?num=<%=article.getNum()%>&mode=<%=mode%>&category=<%=category%>&sel=<%=sel%>&search=<%=search%>&pageNum=<%=pageNum%>'"/>
 				<%}%>
 				<%if(article.getWriter().equals((String)session.getAttribute("memId")) || (session.getAttribute("memId")!=null && ((String)session.getAttribute("memId")).equals("admin"))){ %>
 					<input type="button" value="삭제" onclick="deleteArticle('<%=num%>')"/>
@@ -158,6 +162,10 @@ if(request.getParameter("num") == null){%>
 	<jsp:include page="boardComment.jsp">
 		<jsp:param value="<%=num%>" name="num"/>
 		<jsp:param value="<%=pageNum%>" name="pageNum"/>
+		<jsp:param value="<%=mode%>" name="mode"/>
+		<jsp:param value="<%=category%>" name="category"/>
+		<jsp:param value="<%=sel%>" name="sel"/>
+		<jsp:param value="<%=search%>" name="search"/>
 		
 	</jsp:include>
 <jsp:include page="../footer.jsp" flush="false"/>

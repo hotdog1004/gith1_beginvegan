@@ -11,6 +11,8 @@
 <title>inserPro</title>
 </head>
 <%
+	request.setCharacterEncoding("utf-8"); 
+
 	if(session.getAttribute("memId") == null ){%>
 	<script>
 		alert("잘못된 접근입니다.");
@@ -18,8 +20,7 @@
 	</script>
 	<% }else{
 
-	request.setCharacterEncoding("utf-8"); 
-		
+	
 	String path = request.getRealPath("freeboard/save");
 	int max = 1024*1024*10;
 	String enc="utf-8";
