@@ -12,8 +12,10 @@
 - 레시피 입력
 - 조리단계별 댓글과 레시피 댓글 CRUD
 <img src="https://user-images.githubusercontent.com/66353188/101283051-acd75e00-381b-11eb-9bb1-7bd947d48efd.png" width="60%">
+
 - 레시피 찜하기 
 - 레시피 평점주기
 - 레시피 검색
+
 - 내 글/댓글 목록보기
 <img src="https://user-images.githubusercontent.com/66353188/101283065-bb257a00-381b-11eb-83ff-2da2a1c1cdb4.png" width="60%">
